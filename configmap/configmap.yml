@@ -1,0 +1,42 @@
+apiVersion: v1
+data:
+  configs.yml: |-
+    services:
+      - service: helm
+        url: https://api.github.com/repos/helm/helm/releases/latest
+      - service: argocd
+        url: https://api.github.com/repos/argoproj/argo-cd/releases/latest
+      - service: kubernetes
+        url: https://api.github.com/repos/kubernetes/kubernetes/releases/latest
+      - service: rancher
+        url: https://api.github.com/repos/rancher/rancher/releases/latest
+      - service: k3s
+        url: https://api.github.com/repos/k3s-io/k3s/releases/latest
+      - service: nexus
+        url: https://api.github.com/repos/sonatype/nexus-public/releases/latest
+      - service: harbor
+        url: https://api.github.com/repos/goharbor/harbor/releases/latest
+      - service: minio
+        url: https://api.github.com/repos/minio/minio/releases/latest
+      - service: mc
+        url: https://api.github.com/repos/minio/mc/releases/latest
+      - service: keepalived
+        url: https://api.github.com/repos/acassen/keepalived/tags
+      - service: elasticsearch
+        url: https://api.github.com/repos/elastic/elasticsearch/releases/latest
+      - service: kibana
+        url: https://api.github.com/repos/elastic/kibana/releases/latest
+      - service: fluent-bit
+        url: https://api.github.com/repos/fluent/fluent-bit/releases/latest
+      - service: fluentd
+        url: https://api.github.com/repos/fluent/fluentd/releases/latest
+      - service: element-web
+        url: https://api.github.com/repos/element-hq/element-web/releases/latest
+      - service: element
+        url: https://api.github.com/repos/element-hq/synapse/releases/latest
+      - service: kubespray
+        url: https://api.github.com/repos/kubernetes-sigs/kubespray/releases/latest
+kind: ConfigMap
+metadata:
+  name: release-finder-config
+  namespace:
