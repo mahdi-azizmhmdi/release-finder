@@ -1,0 +1,23 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ include "release-finder.fullname" . }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    {{- include "release-finder.labels" . | nindent 4 }}
+spec:
+  endpoints:
+  - port: {{ .Values.prometheus.port | quote }}
+    path: {{ .Values.prometheus.path | quote }}
+    interval: {{ default "15s" .Values.prometheus.interval | quote }}
+    metricRelabelings:
+    - replacement: {{ include "release-finder.fullname" . | quote }}
+      sourceLabels: ["app"]
+      targetLabel: "app"
+  jobLabel: {{ include "release-finder.fullname" . }}
+  namespaceSelector:
+    matchNames:
+    - {{ .Release.Namespace }}
+  selector:
+    matchLabels:
+    {{- include "release-finder.selectorLabels" . | nindent 6 }}
