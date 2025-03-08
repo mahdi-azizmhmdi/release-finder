@@ -128,7 +128,7 @@ func HealthCheck(urls []string) {
 	health := healthcheck.NewHandler()
 	for _, domain := range uniqueurls {
 		// fmt.Println(reflect.TypeOf(domain))
-		health.AddLivenessCheck("upstream-dep-check", healthcheck.DNSResolveCheck(domain, 60*time.Second))
+		health.AddLivenessCheck("upstream-dns-check", healthcheck.DNSResolveCheck(domain, 60*time.Second))
 	}
 	http.ListenAndServe("0.0.0.0:9001", health)
 
