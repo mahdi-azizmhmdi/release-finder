@@ -9,7 +9,7 @@ import (
 
 type Service struct {
 	Service string `mapstructure:"service"`
-	URL     string `mapstructrue:url`
+	URL     string `mapstructrue:"url"`
 }
 
 type Services struct {
