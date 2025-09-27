@@ -36,6 +36,15 @@ func main() {
 	// defer ticker.Stop()
 	go func() {
 		for ; ; <-ticker.C {
+			prometheus.Unregister(VersionHistory)
+			VersionHistory = prometheus.NewGaugeVec(
+				prometheus.GaugeOpts{
+					Name: "New_Version_Of_Services",
+					Help: " The Latest Version Of Devops Services",
+				},
+				[]string{"version", "service"},
+			)
+			prometheus.MustRegister(VersionHistory)
 			for _, service := range c.Services {
 				fmt.Printf("\nService: %s\n", service.Service)
 				data := MakeRequest(service.URL)
@@ -128,7 +137,7 @@ func HealthCheck(urls []string) {
 	health := healthcheck.NewHandler()
 	for _, domain := range uniqueurls {
 		// fmt.Println(reflect.TypeOf(domain))
-		health.AddLivenessCheck("upstream-dns-check", healthcheck.DNSResolveCheck(domain, 60*time.Second))
+		health.AddLivenessCheck("upstream-dep-check", healthcheck.DNSResolveCheck(domain, 60*time.Second))
 	}
 	http.ListenAndServe("0.0.0.0:9001", health)
 

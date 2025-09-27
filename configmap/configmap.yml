@@ -36,7 +36,18 @@ data:
         url: https://api.github.com/repos/element-hq/synapse/releases/latest
       - service: kubespray
         url: https://api.github.com/repos/kubernetes-sigs/kubespray/releases/latest
+      - service: grafana
+        url: https://api.github.com/repos/grafana/grafana/releases/latest
+      - service: matrix-sliding-sync
+        url: https://api.github.com/repos/matrix-org/sliding-sync/releases/latest
+      - service: xray
+        url: https://api.github.com/repos/xtls/xray-core/releases/latest
+      - service: element-call 
+        url: https://api.github.com/repos/element-hq/element-call
+      - service: Backhaul 
+        url: https://api.github.com/repos/Musixal/Backhaul
+
 kind: ConfigMap
 metadata:
   name: release-finder-config
-  namespace:
+  namespace: gitlab-runner
