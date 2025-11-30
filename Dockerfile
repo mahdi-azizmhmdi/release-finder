@@ -1,4 +1,4 @@
-FROM harbor-dev.okala.com/docker.io/golang:1.23.1 AS builder
+FROM docker.io/golang:1.23.1 AS builder
 
 ARG MAIN_APP_PATH=cmd/main.go
 
@@ -11,7 +11,7 @@ RUN go install -mod=vendor -v -ldflags "-s" ./cmd/...
 RUN go build -o main ${MAIN_APP_PATH}
 
 
-FROM harbor-dev.okala.com/docker.io/alpine:latest
+FROM docker.io/alpine:latest
 
 WORKDIR /app
 
