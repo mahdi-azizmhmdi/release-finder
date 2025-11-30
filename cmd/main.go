@@ -50,6 +50,7 @@ func main() {
 				data := MakeRequest(service.URL)
 				version := Parser(data, service.URL)
 				fmt.Println(version)
+				VersionHistory.DeleteLabelValues(service.Service)
 				VersionHistory.WithLabelValues(version, service.Service).Set(1)
 				Lasturl = append(Lasturl, service.URL)
 

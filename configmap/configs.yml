@@ -43,3 +43,5 @@ services:
     url: https://api.github.com/repos/element-hq/element-call
   - service: Backhaul 
     url: https://api.github.com/repos/Musixal/Backhaul
+  - service: Unbound
+    url: https://api.github.com/repos/NLnetLabs/unbound/releases/latest"
